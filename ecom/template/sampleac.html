@@ -1,0 +1,13 @@
+<div class="form-container" style="height: 450px;">
+    <div class="form-btn">
+        <span  onclick="login()">Login</a></span>
+        <span onclick="register()">Register</span>
+        <hr id="Indicator">
+    </div>
+    <form id="LoginForm" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit" name="login" class="btn">Login</button>
+        <a href="">Forget Password</a>
+    </form>

@@ -1,0 +1,75 @@
+{% extends "header_footer.html" %}
+
+
+{% load static %}
+{% load brand %}
+
+
+
+{% block banner %}
+
+{% endblock banner %} 
+
+
+
+{% block content %}
+
+
+    <!-- All Products 
+
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>All Products</h2>
+            <select>
+                <option>Default Sort</option>
+                <option>Sort By Price</option>
+                <option>Sort By Popularity</option>
+                <option>Sort By Rating</option>
+                <option>Sort By Sale</option>
+            </select>
+        </div> -->
+
+
+        {% for pd in product|brando:4 %}
+        <div class="row">
+            
+            {% for product in pd %}
+            <div class="col-4">
+               
+                <a href="{% url 'details_product' product.id %}"><img src="{{ product.image.url }}"></a>
+                <h4>{{product.title}}</h4>
+               
+                <p>$50.00</p>
+                
+            </div> 
+            {% endfor %}      
+       
+        </div>
+        {% endfor %}
+        
+
+
+
+
+        <div class="page-btn">
+
+            {% if product.has_previous %}
+            <a href="?page={{product.previous_page_number}}"><span><<</span></a>
+            {% endif %}
+
+            {% for i in product.paginator.page_range %}
+            <a href="?page={{i}}"><span>{{i}}</span></a>
+            {% endfor %}
+
+            {% if product.has_next %}
+            <a href="?page={{product.next_page_number}}"><span>>></span></a>
+            {% endif %}
+
+           
+        </div>
+    </div>
+
+    
+
+
+{% endblock content  %}
